@@ -1,0 +1,19 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "bcrypt>=4.3.0",
+    "cryptography>=45.0.7",
+    "dotenv>=0.9.9",
+    "fastapi>=0.116.1",
+    "motor>=3.7.1",
+    "numpy>=2.3.2",
+    "onnxruntime>=1.22.1",
+    "pytest>=8.4.2",
+    "requests>=2.32.5",
+    "slowapi>=0.1.9",
+    "uvicorn>=0.35.0",
+]
