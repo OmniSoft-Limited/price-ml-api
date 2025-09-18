@@ -10,10 +10,16 @@ services:
       - .env
     command: uv run main.py
     expose:
-      - "8000"   # internal app port
+      - "8000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.priceprediction.rule=Host(`aiapi.yourdomain.com`)"
+      - "traefik.http.routers.priceprediction.rule=Host(`aiapi.omnisoft.ltd`)"
       - "traefik.http.services.priceprediction.loadbalancer.server.port=8000"
       - "traefik.http.routers.priceprediction.entrypoints=web,websecure"
       - "traefik.http.routers.priceprediction.tls.certresolver=myresolver"
+    networks:
+      - dokploy_default
+
+networks:
+  dokploy_default:
+    external: true
