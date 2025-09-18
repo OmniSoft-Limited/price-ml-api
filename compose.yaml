@@ -10,7 +10,7 @@ services:
       - .env
     command: uv run main.py
     expose:
-      - "8000"
+      - "8000"   # internal port only
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.priceprediction.rule=Host(`aiapi.omnisoft.ltd`)"
@@ -18,8 +18,8 @@ services:
       - "traefik.http.routers.priceprediction.entrypoints=web,websecure"
       - "traefik.http.routers.priceprediction.tls.certresolver=myresolver"
     networks:
-      - dokploy_default
+      - dokploy-network   # attach to Dokploy’s overlay network
 
 networks:
-  dokploy_default:
+  dokploy-network:
     external: true
