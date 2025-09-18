@@ -4,10 +4,16 @@ services:
   server:
     build:
       context: .
-    ports:
-      - "8000:8000"
+    container_name: priceprediction-api
+    restart: always
     env_file:
       - .env
-    volumes:
-      - .:/app
     command: uv run main.py
+    expose:
+      - "8000"   # internal app port
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.priceprediction.rule=Host(`aiapi.yourdomain.com`)"
+      - "traefik.http.services.priceprediction.loadbalancer.server.port=8000"
+      - "traefik.http.routers.priceprediction.entrypoints=web,websecure"
+      - "traefik.http.routers.priceprediction.tls.certresolver=myresolver"
